@@ -6,7 +6,7 @@ import interfaces.strategy.Draw;
 public abstract class Actor implements Remove, Insert, Draw {
     private Coordinate location;
     private Color color;
-    private static final Board board = Board.getInstance();
+    private static final Screen screen = Screen.getInstance();
 
     public Actor(Coordinate location, Color color) {
         this.location = location;
@@ -19,7 +19,7 @@ public abstract class Actor implements Remove, Insert, Draw {
     }
 
     public Actor(){
-        this.location = Actor.board.getRandomCoordinate();
+        this.location = Actor.screen.getRandomCoordinate();
         this.color = RandomColor.generate();
     }
 
@@ -39,11 +39,11 @@ public abstract class Actor implements Remove, Insert, Draw {
         this.color = color;
     }
 
-    public static Board getBoard() {
-        return board;
+    public static Screen getScreen() {
+        return screen;
     }
 
     public int getSize(){
-        return Actor.board.getActorSize();
+        return Actor.screen.getActorSize();
     }
 }

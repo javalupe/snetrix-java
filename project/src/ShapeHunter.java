@@ -3,23 +3,25 @@ import java.util.ArrayList;
 import interfaces.Observer;
 import interfaces.Subject;
 
-public class ShapeDetector implements Observer, Subject {
+public class ShapeHunter implements Observer, Subject {
     private ArrayList<Observer> observers;
     private ArrayList<Segment> segmentsInShape;
+    private boolean shapeDetected;
     private Snake subjectSnake;
     private Shape shape;
 
     // Singleton -------------------------------------------------------------
-    private static ShapeDetector instance;
+    private static ShapeHunter instance;
 
-    private ShapeDetector() {
+    private ShapeHunter() {
         this.observers = new ArrayList<Observer>();
         this.segmentsInShape = new ArrayList<Segment>();
+        this.shapeDetected = false;
     }
 
-    public static ShapeDetector getInstance() {
+    public static ShapeHunter getInstance() {
         if (instance == null) {
-            instance = new ShapeDetector();
+            instance = new ShapeHunter();
         }
         return instance;
     }
@@ -70,7 +72,6 @@ public class ShapeDetector implements Observer, Subject {
         for (Observer obs: observers){
             obs.update();
         }
-        
     }
 
     @Override // Observer

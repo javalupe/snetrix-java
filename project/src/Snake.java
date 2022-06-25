@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class Snake implements Subject, Insert, Move, Draw {
     private ArrayList<Segment> segments;
-    private ArrayList<Observer> observers;
+    private ArrayList<Observer> moveObservers; // FoodBank e ShapeHunter
     private Direction direction;
-    private static final Screen board = Screen.getInstance();
+    private static final Screen screen = Screen.getInstance();
 
     public Snake(ArrayList<Segment> segments, ArrayList<Observer> observers, Direction direction) {
         this.segments = segments;
-        this.observers = observers;
+        this.moveObservers = observers;
         this.direction = direction;
     }
 
@@ -30,8 +30,8 @@ public class Snake implements Subject, Insert, Move, Draw {
         this.segments = segments;
     }
 
-    public Screen getBoard() {
-        return board;
+    public Screen getScreen() {
+        return screen;
     }
 
     public Direction getDirection() {
@@ -71,7 +71,7 @@ public class Snake implements Subject, Insert, Move, Draw {
     private void checkBodyCollision() {
         for (int i = 1; i < this.getLength(); i++) {
             if (this.segments.get(i).getLocation().equals(this.getHead().getLocation())) {
-                Snake.board.setStatus(Status.GAMEOVER);
+                Snake.screen.setStatus(Status.GAMEOVER);
             }
         }
     }
@@ -79,11 +79,11 @@ public class Snake implements Subject, Insert, Move, Draw {
     private void checkBorderCollision() {
         Boolean collision;
         Coordinate headLocation = this.getHead().getLocation();
-        collision = headLocation.x < 0 || headLocation.x >= Snake.board.getGridSize() ||
-                headLocation.y < 0 || headLocation.y >= Snake.board.getGridSize();
+        collision = headLocation.x < 0 || headLocation.x >= Snake.screen.getGridSize() ||
+                headLocation.y < 0 || headLocation.y >= Snake.screen.getGridSize();
 
         if (collision) {
-            Snake.board.setStatus(Status.GAMEOVER);
+            Snake.screen.setStatus(Status.GAMEOVER);
         }
     }
 
@@ -94,17 +94,17 @@ public class Snake implements Subject, Insert, Move, Draw {
 
     @Override // Subject
     public void attach(Observer obs) {
-        this.observers.add(obs);
+        this.moveObservers.add(obs);
     }
 
     @Override // Subject
     public void dettach(Observer obs) {
-        this.observers.remove(obs);
+        this.moveObservers.remove(obs);
     }
 
     @Override // Subject
     public void notifyUpdate() {
-        for (Observer obs : observers) {
+        for (Observer obs : moveObservers) {
             obs.update();
         }
     }

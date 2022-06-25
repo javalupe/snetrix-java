@@ -5,10 +5,10 @@ import java.util.Timer;
 import javax.swing.JPanel;
 
 public class Screen extends JPanel implements ActionListener {
-    private static final int DEFAULT_BOARD_WIDTH = 500;
-    private static final int DEFAULT_BOARD_HEIGHT = DEFAULT_BOARD_WIDTH;
+    private static final int DEFAULT_SCREEN_WIDTH = 500;
+    private static final int DEFAULT_SCREEN_HEIGHT = DEFAULT_SCREEN_WIDTH;
     private static final int DEFAULT_GRID_SIZE = 50;
-    private static final int DEFAULT_ACTOR_SIZE = DEFAULT_BOARD_WIDTH / DEFAULT_GRID_SIZE;
+    private static final int DEFAULT_ACTOR_SIZE = DEFAULT_SCREEN_WIDTH / DEFAULT_GRID_SIZE;
     private static final int DEFAULT_DELAY = 100;
     private static final int DEFAULT_NUMBER_OF_SHAPES = 3;
     private static final FoodBank fb = FoodBank.getInstance();
@@ -29,8 +29,8 @@ public class Screen extends JPanel implements ActionListener {
     private static Screen instance;
 
     private Screen() {
-        this.boardWidth = Screen.DEFAULT_BOARD_WIDTH;
-        this.boardHeight = Screen.DEFAULT_BOARD_HEIGHT;
+        this.boardWidth = Screen.DEFAULT_SCREEN_WIDTH;
+        this.boardHeight = Screen.DEFAULT_SCREEN_HEIGHT;
         this.gridSize = Screen.DEFAULT_GRID_SIZE;
         this.actorSize = Screen.DEFAULT_ACTOR_SIZE;
         this.delay = Screen.DEFAULT_DELAY;
