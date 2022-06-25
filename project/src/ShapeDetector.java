@@ -1,4 +1,7 @@
-public class ShapeDetector implements Observer, Subject, Singleton {
+import interfaces.Observer;
+import interfaces.Subject;
+
+public class ShapeDetector implements Observer, Subject {
     private ShapeRemover observingShapeRemover;
     private Snake observedSnake;
     private Shape shape;
@@ -9,7 +12,7 @@ public class ShapeDetector implements Observer, Subject, Singleton {
     }
 
     public void detectShape(){
-        for (Segment seg: this.observedSnake){
+        for (Segment seg: this.observedSnake.getSegments()){
             
         }
     }
