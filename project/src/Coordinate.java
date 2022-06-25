@@ -2,8 +2,6 @@ import java.awt.Point;
 import java.util.Random;
 
 public class Coordinate extends Point {
-    private static final Board board = Board.getInstance();
-    private static final Random rand = new Random();
 
     public Coordinate(int x, int y){
         super(x, y);
@@ -17,10 +15,8 @@ public class Coordinate extends Point {
         return new Coordinate(this.x, this.y);
     }
 
-    public static Coordinate randomCoordinate(){
-        int x = rand.nextInt(board.getGridSize()) * board.getActorSize();
-        int y = rand.nextInt(board.getGridSize()) * board.getActorSize();
-        return new Coordinate(x, y);
+    public Coordinate plus(Coordinate coord){
+        return new Coordinate(this.x + coord.x, this.y + coord.y);
     }
 
     public void towards(Direction dir){

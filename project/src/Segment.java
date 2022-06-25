@@ -37,7 +37,7 @@ public class Segment extends Actor implements Move {
     public Segment getNext() throws SegmentOutOfBoundsException {
         Segment next = null;
         if (!this.isHead()) {
-            next = this.snake.get(this.getIndex() - 1);
+            next = this.snake.getSegments().get(this.getIndex() - 1);
         } else {
             throw new SegmentOutOfBoundsException();
         }
@@ -47,7 +47,7 @@ public class Segment extends Actor implements Move {
     public Segment getPrevious() throws SegmentOutOfBoundsException {
         Segment previous = null;
         if (!this.isTail()) {
-            previous = this.snake.get(this.getIndex() + 1);
+            previous = this.snake.getSegments().get(this.getIndex() + 1);
         } else {
             throw new SegmentOutOfBoundsException();
         }
@@ -76,7 +76,7 @@ public class Segment extends Actor implements Move {
 
     // Movimento total da Snake, usado quando o jogador muda sua
     // direção ou quando o Timer completa um ciclo
-    public void moveHead()  throws SegmentException {
+    public void moveHead() throws SegmentException {
         if (this.isHead()) {
             // caso a Snake tenha corpo, mover corpo
             if (this.snake.getLength() > 1) {
@@ -88,7 +88,8 @@ public class Segment extends Actor implements Move {
             newLocation.towards(this.snake.getDirection());
             this.setLocation(newLocation);
         } else {
-            throw new SegmentException("Este método só pode ser utilizado na cabeça da cobra");
+            throw new SegmentException(
+                    "Este método só pode ser utilizado na cabeça da cobra");
         }
     }
 
@@ -102,7 +103,8 @@ public class Segment extends Actor implements Move {
                 seg.setLocation(seg.getNext().getLocation());
             }
         } else {
-            throw new SegmentException("Este método não pode ser utilizado na cabeça da cobra");
+            throw new SegmentException(
+                    "Este método não pode ser utilizado na cabeça da cobra");
         }
     }
 
@@ -112,14 +114,12 @@ public class Segment extends Actor implements Move {
             try {
                 this.moveHead();
             } catch (SegmentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
             try {
                 this.moveBody();
             } catch (SegmentException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -131,7 +131,6 @@ public class Segment extends Actor implements Move {
         try {
             this.getPrevious().move();
         } catch (SegmentOutOfBoundsException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -153,6 +152,8 @@ public class Segment extends Actor implements Move {
     @Override // Draw strategy, da classe parente Actor
     public void draw(Graphics g) {
         g.setColor(this.getColor());
-        g.fillRect(this.getLocation().x, this.getLocation().y, this.getSize(), this.getSize());
+        g.fillRect(this.getLocation().x * this.getSize(),
+                this.getLocation().y * this.getSize(),
+                this.getSize(), this.getSize());
     }
 }

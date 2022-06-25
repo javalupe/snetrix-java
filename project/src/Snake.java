@@ -3,8 +3,6 @@ import interfaces.strategy.Move;
 import interfaces.strategy.Draw;
 import interfaces.Observer;
 import interfaces.Subject;
-import exceptions.SnakeEmptyException;
-import exceptions.SegmentOutOfBoundsException;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -12,7 +10,7 @@ public class Snake implements Subject, Insert, Move, Draw {
     private ArrayList<Segment> segments;
     private ArrayList<Observer> observers;
     private Direction direction;
-    private static final Board board = Board.getInstance();
+    private static final Screen board = Screen.getInstance();
 
     public Snake(ArrayList<Segment> segments, ArrayList<Observer> observers, Direction direction) {
         this.segments = segments;
@@ -32,7 +30,7 @@ public class Snake implements Subject, Insert, Move, Draw {
         this.segments = segments;
     }
 
-    public Board getBoard() {
+    public Screen getBoard() {
         return board;
     }
 
@@ -52,61 +50,61 @@ public class Snake implements Subject, Insert, Move, Draw {
         return this.getLength() == 0;
     }
 
-    public Segment get(int i) {
-        Segment gotten = null;
-        if (this.isEmpty()) {
-            throw new SnakeEmptyException();
-        } else {
-            try {
-                gotten = this.segments.get(i);
-            } catch (IndexOutOfBoundsException ex) {
-                throw new SegmentOutOfBoundsException();
-            }
-        }
-        return gotten;
-    }
-
     public Segment getHead() {
-        Segment head = null;
-        try {
-            head = this.get(0);
-        }
-        // adicionar novo Segment à Snake vazia se houver tentativa
-        // de acesso à sua cabeça (comportamento inesperado)
-        catch (SnakeEmptyException ex) {
-            this.insert();
-            head = this.getHead();
-        }
-        return head;
+        return this.segments.get(0);
     }
 
     public Segment getTail() {
-        Segment tail = null;
-        try {
-            tail = this.get(this.getLength() - 1);
+        return this.segments.get(this.getLength() - 1);
+    }
+
+    public boolean in(Coordinate coord){
+        boolean in = false;
+        for (Segment seg : this.segments){
+            if (seg.getLocation().equals(coord)){
+                in = true;
+            }
         }
-        // adicionar novo Segment à Snake vazia se houver tentativa
-        // de acesso à sua cauda (comportamente inesperado)
-        catch (SnakeEmptyException ex) {
-            this.insert();
-            tail = this.getTail();
+        return in;
+    }
+
+    private void checkBodyCollision() {
+        for (int i = 1; i < this.getLength(); i++) {
+            if (this.segments.get(i).getLocation().equals(this.getHead().getLocation())) {
+                Snake.board.setStatus(Status.GAMEOVER);
+            }
         }
-        return tail;
+    }
+
+    private void checkBorderCollision() {
+        Boolean collision;
+        Coordinate headLocation = this.getHead().getLocation();
+        collision = headLocation.x < 0 || headLocation.x >= Snake.board.getGridSize() ||
+                headLocation.y < 0 || headLocation.y >= Snake.board.getGridSize();
+
+        if (collision) {
+            Snake.board.setStatus(Status.GAMEOVER);
+        }
+    }
+
+    public void checkCollision() {
+        this.checkBodyCollision();
+        this.checkBorderCollision();
     }
 
     @Override // Subject
-    public void attach(Observer obs){
+    public void attach(Observer obs) {
         this.observers.add(obs);
     }
 
     @Override // Subject
-    public void dettach(Observer obs){
+    public void dettach(Observer obs) {
         this.observers.remove(obs);
     }
 
     @Override // Subject
     public void notifyUpdate() {
-        for (Observer obs: observers){
+        for (Observer obs : observers) {
             obs.update();
         }
     }
@@ -128,7 +126,7 @@ public class Snake implements Subject, Insert, Move, Draw {
         // evitando que a cauda mude de cor inesperadamente quando uma
         // nova Food for comida pela Snake
         for (int i = this.getLength() - 1; i >= 0; i--) {
-            this.get(i).draw(g);
+            this.segments.get(i).draw(g);
         }
     }
 

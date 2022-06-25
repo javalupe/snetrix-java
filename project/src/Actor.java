@@ -18,6 +18,11 @@ public abstract class Actor implements Remove, Insert, Draw {
         this.color = RandomColor.generate();
     }
 
+    public Actor(){
+        this.location = Actor.board.getRandomCoordinate();
+        this.color = RandomColor.generate();
+    }
+
     public Coordinate getLocation() {
         return location;
     }

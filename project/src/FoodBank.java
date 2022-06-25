@@ -4,17 +4,16 @@ import interfaces.Observer;
 import interfaces.strategy.Draw;
 import interfaces.strategy.Insert;
 
-
 public class FoodBank implements Observer, Insert, Draw {
     private static final int DEFAULT_LENGTH = 10;
     private ArrayList<Food> foods;
     private Snake observedSnake;
     private static int length;
-    
+
     // Singleton -------------------------------------------------------------
     private static FoodBank instance;
-    
-    private FoodBank(){
+
+    private FoodBank() {
         this.foods = new ArrayList<Food>();
         FoodBank.length = FoodBank.DEFAULT_LENGTH;
 
@@ -22,7 +21,7 @@ public class FoodBank implements Observer, Insert, Draw {
         this.observedSnake = null;
     }
 
-    public static FoodBank getInstance(){
+    public static FoodBank getInstance() {
         if (instance == null) {
             instance = new FoodBank();
         }
@@ -54,17 +53,17 @@ public class FoodBank implements Observer, Insert, Draw {
         FoodBank.length = length;
     }
 
-    public Food get(int i){
+    public Food get(int i) {
         return this.foods.get(i);
     }
 
-    private boolean eaten(){
+    private boolean eaten() {
         boolean result = false;
         Segment head = this.observedSnake.getHead();
-        for (Food f: foods){
+        for (Food f : foods) {
             // se a localização da cabeça da Snake coincidir com a
             // localização de alguma Food, removê-la e retornar true
-            if (f.getLocation().equals(head.getLocation())){
+            if (f.getLocation().equals(head.getLocation())) {
                 f.remove();
                 result = true;
             }
@@ -73,13 +72,10 @@ public class FoodBank implements Observer, Insert, Draw {
     }
 
     @Override // Observer
-    public void update(){
+    public void update() {
         // caso uma Food seja comida pela Snake, adicionar nova Food
-        if (this.eaten()){
+        if (this.eaten()) {
             this.foods.add(new Food());
         }
     }
-
-
-    
 }

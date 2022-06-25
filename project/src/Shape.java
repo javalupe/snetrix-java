@@ -70,14 +70,18 @@ public class Shape {
         return blocks.size();
     }
 
-    public ArrayList<Coordinate> getTranslatedBlocks() {
+    public ArrayList<Coordinate> getTranslatedBlocks(int x, int y) {
         ArrayList<Coordinate> translatedBlocks = new ArrayList<Coordinate>();
         for (Coordinate coord : this.blocks) {
             Coordinate block = coord.clone();
-            block.x -= this.minX;
-            block.y -= this.minY;
+            block.x -= x;
+            block.y -= y;
             translatedBlocks.add(block);
         }
         return translatedBlocks;
+    }
+
+    public ArrayList<Coordinate> getTranslatedBlocks() {
+        return this.getTranslatedBlocks(this.minX, this.minY);
     }
 }
