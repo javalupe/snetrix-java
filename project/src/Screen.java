@@ -4,6 +4,7 @@ import java.util.Random;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class Screen extends JPanel implements ActionListener {
     private static final int DEFAULT_SCREEN_WIDTH = 500 * 2;

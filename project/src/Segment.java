@@ -65,13 +65,7 @@ public class Segment extends Actor implements Move {
     }
 
     public List<Segment> getBehindInclusive() throws SegmentOutOfBoundsException {
-        List<Segment> behind = null;
-        if (!this.isTail()) {
-            behind = this.snake.getSegments().subList(this.getIndex(), this.snake.getLength());
-        } else {
-            throw new SegmentOutOfBoundsException();
-        }
-        return behind;
+        return this.snake.getSegments().subList(this.getIndex(), this.snake.getLength());
     }
 
     // Movimento total da Snake, usado quando o jogador muda sua
@@ -99,8 +93,8 @@ public class Segment extends Actor implements Move {
         if (!this.isHead()) {
             List<Segment> behind = getBehindInclusive();
             // para cada Segment, assumir posição do Segment à frente
-            for (Segment seg : behind) {
-                seg.setLocation(seg.getNext().getLocation());
+            for (int i = this.snake.getLength() - 1; i >= 1; i--) {
+                this.snake.getSegments().get(i).setLocation(this.snake.getSegments().get(i - 1).getLocation());
             }
         } else {
             throw new SegmentException(
