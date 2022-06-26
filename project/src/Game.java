@@ -11,7 +11,7 @@ import exceptions.SnakeException;
 import interfaces.Observer;
 
 public class Game extends JFrame {
-    private static final int DEFAULT_DELAY = 100;
+    private static final int DEFAULT_DELAY = 150;
 
     private final Screen screen = Screen.getInstance();
     private Controller controller;
@@ -19,25 +19,16 @@ public class Game extends JFrame {
 
     public Game() {
         this.delay = DEFAULT_DELAY;
-
+        this.controller = new Controller();
         Snake snake = new Snake();
         snake.insert();
 
         FoodBank.getInstance().insert();
+        FoodBank.getInstance().setObservedSnake(snake);
+        snake.attach(FoodBank.getInstance());
+        this.controller.setSnake(snake);
         initScreen(snake);
         initUI();
-
-        snake.move();
-        snake.move();
-        snake.move();
-        snake.move();
-        snake.move();
-        snake.move();
-        snake.move();
-        snake.move();
-        snake.move();
-
-
     }
 
     private void initUI() {
@@ -52,10 +43,12 @@ public class Game extends JFrame {
     }
 
     private void initScreen(Snake snake) {
+        this.screen.addKeyListener(controller);
+        Timer timer = new Timer(this.delay, this.screen);
+        timer.start();
+
         this.screen.setFocusable(true);
         this.screen.setPreferredSize(new Dimension(this.screen.getScreenWidth(), this.screen.getScreenHeight()));
-        this.screen.addKeyListener(controller);
-        new Timer(this.delay, this.screen);
         this.screen.setSnake(snake);
     }
 

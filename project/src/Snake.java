@@ -11,6 +11,7 @@ public class Snake implements Subject, Insert, Move, Draw {
     private ArrayList<Observer> moveObservers; // FoodBank e ShapeHunter
     private Direction direction;
     private static final Screen screen = Screen.getInstance();
+    private final Object MUTEX = new Object();
 
     public Snake(ArrayList<Segment> segments, ArrayList<Observer> observers, Direction direction) {
         this.segments = segments;
@@ -58,10 +59,10 @@ public class Snake implements Subject, Insert, Move, Draw {
         return this.segments.get(this.getLength() - 1);
     }
 
-    public boolean in(Coordinate coord){
+    public boolean in(Coordinate coord) {
         boolean in = false;
-        for (Segment seg : this.segments){
-            if (seg.getLocation().equals(coord)){
+        for (Segment seg : this.segments) {
+            if (seg.getLocation().equals(coord)) {
                 in = true;
             }
         }
@@ -94,7 +95,9 @@ public class Snake implements Subject, Insert, Move, Draw {
 
     @Override // Subject
     public void attach(Observer obs) {
-        this.moveObservers.add(obs);
+        synchronized (MUTEX){
+            this.moveObservers.add(obs);
+        }
     }
 
     @Override // Subject
@@ -127,8 +130,10 @@ public class Snake implements Subject, Insert, Move, Draw {
         // desenhar a Snake começando na cauda e terminando na cabeça,
         // evitando que a cauda mude de cor inesperadamente quando uma
         // nova Food for comida pela Snake
-        for (int i = this.getLength() - 1; i >= 0; i--) {
-            this.segments.get(i).draw(g);
+        synchronized (this.segments) {
+            for (int i = this.getLength() - 1; i >= 0; i--) {
+                this.segments.get(i).draw(g);
+            }
         }
     }
 

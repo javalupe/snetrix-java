@@ -58,23 +58,29 @@ public class FoodBank implements Observer, Insert, Draw {
         return this.foods.get(i);
     }
 
-
-    @Override // Observer
-    public void update() {
+    public Food eaten() {
+        Food eaten = null;
         for (Food f : foods) {
             // se a localização da cabeça da Snake coincidir com a
             // localização de alguma Food...
             if (f.getLocation().equals(this.observedSnake.getHead().getLocation())) {
-                // substituir essa Food por uma nova Food com cor e
-                // localização aleatórias
-                f.remove();
-                this.foods.add(new Food());
-
-                // atualizar cobra com novo Segment, cuja cor é a
-                // mesma que a Food comida
-                Segment newTail = new Segment(f.getColor(), this.observedSnake);
-                this.observedSnake.getSegments().add(newTail);
+                eaten = f;
             }
+        }
+        return eaten;
+    }
+
+    @Override // Observer
+    public void update(){
+        Food f = this.eaten();
+
+        if (f != null){
+            f.remove();
+            this.foods.add(new Food());
+    
+            Segment newTail = new Segment(f.getColor(), this.observedSnake);
+            this.observedSnake.getSegments().add(newTail);
+            newTail.insert();
         }
     }
 
