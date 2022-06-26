@@ -15,11 +15,11 @@ public class Segment extends Actor implements Move {
     }
 
     public Segment(Color color, Snake snake) {
-        this(Segment.getScreen().getMiddle(), color, snake);
+        this(snake.getScreen().getMiddle(), color, snake);
     }
 
     public Segment(Snake snake) {
-        this(RandomColor.generate(), snake);
+        this(snake.getScreen().getMiddle(), RandomColor.generate(), snake);
     }
 
     public int getIndex() {

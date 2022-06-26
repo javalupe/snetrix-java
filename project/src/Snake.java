@@ -111,12 +111,15 @@ public class Snake implements Subject, Insert, Move, Draw {
 
     @Override // Insert strategy
     public void insert() {
-        this.getSegments().add(new Segment(this));
+        Segment seg = new Segment(this);
+        this.getSegments().add(seg);
+        seg.insert();
     }
 
     @Override // Move strategy
     public void move() {
         this.getHead().move();
+        this.checkCollision();
         this.notifyUpdate();
     }
 

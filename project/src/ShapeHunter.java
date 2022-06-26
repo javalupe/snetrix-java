@@ -5,8 +5,6 @@ import interfaces.Subject;
 
 public class ShapeHunter implements Observer, Subject {
     private ArrayList<Observer> observers;
-    private ArrayList<Segment> segmentsInShape;
-    private boolean shapeDetected;
     private Snake subjectSnake;
     private Shape shape;
 
@@ -15,8 +13,10 @@ public class ShapeHunter implements Observer, Subject {
 
     private ShapeHunter() {
         this.observers = new ArrayList<Observer>();
-        this.segmentsInShape = new ArrayList<Segment>();
-        this.shapeDetected = false;
+
+        // ATRIBUTOS NÃO INICIALIZADOS:
+        // Snake subjectSnake
+        // Shape shape
     }
 
     public static ShapeHunter getInstance() {
@@ -27,15 +27,15 @@ public class ShapeHunter implements Observer, Subject {
     }
     // -----------------------------------------------------------------------
 
-    public void detect() {
-        Boolean detected = true;
+    public void hunt() {
         ArrayList<Coordinate> checklist;
+        ArrayList<Segment> detectedSegments = new ArrayList<Segment>();
+        boolean found = true;
 
         // para cada Segment da Snake, transladar as coordenadas dos
         // blocos que compoem o Shape tomando como referência a
-        // localização do Segment corrente. 
+        // localização do Segment atual 
         for (Segment seg : this.subjectSnake.getSegments()){
-            this.segmentsInShape.clear();
             Coordinate reference = seg.getLocation();
             
             // a função getTranslatedBlocks, por padrão, subtrai os
@@ -46,13 +46,16 @@ public class ShapeHunter implements Observer, Subject {
             
             // percorrer a lista de Coordinates que devem estar na
             // Snake para que o Shape seja detectado
+            detectedSegments.clear();
             for (Coordinate coord : checklist){
-                detected = detected && (subjectSnake.in(coord));
-                this.segmentsInShape.add(seg);
+                found = found && (subjectSnake.in(coord));
+                detectedSegments.add(seg);
             }
 
-            if (detected){
-                this.notifyUpdate();
+            if (found){
+                for (Segment detectedSeg : detectedSegments){
+                    detectedSeg.remove();
+                }
             }
         }
     }
@@ -76,7 +79,7 @@ public class ShapeHunter implements Observer, Subject {
 
     @Override // Observer
     public void update() {
-        this.detect();
+        this.hunt();
     }
 
 }

@@ -3,7 +3,21 @@ import java.awt.event.KeyEvent;
 
 public class Controller extends KeyAdapter {
     private Snake snake;
-    
+
+    public Controller() {
+        super();
+        // ATRIBUTOS NÃO INICIALIZADOS:
+        // Snake snake
+    }
+
+    public Snake getSnake() {
+        return snake;
+    }
+
+    public void setSnake(Snake snake) {
+        this.snake = snake;
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
 

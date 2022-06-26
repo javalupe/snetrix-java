@@ -18,8 +18,8 @@ public class FoodBank implements Observer, Insert, Draw {
         this.foods = new ArrayList<Food>();
         this.length = FoodBank.DEFAULT_LENGTH;
 
-        // atributos não inicializados
-        this.observedSnake = null;
+        // ATRIBUTOS NÃO INICIALIZADOS:
+        // Snake observerdSnake
     }
 
     public static FoodBank getInstance() {
@@ -63,11 +63,17 @@ public class FoodBank implements Observer, Insert, Draw {
     public void update() {
         for (Food f : foods) {
             // se a localização da cabeça da Snake coincidir com a
-            // localização de alguma Food, substituir essa Food por
-            // uma nova Food com cor e localização aleatórias
+            // localização de alguma Food...
             if (f.getLocation().equals(this.observedSnake.getHead().getLocation())) {
+                // substituir essa Food por uma nova Food com cor e
+                // localização aleatórias
                 f.remove();
                 this.foods.add(new Food());
+
+                // atualizar cobra com novo Segment, cuja cor é a
+                // mesma que a Food comida
+                Segment newTail = new Segment(f.getColor(), this.observedSnake);
+                this.observedSnake.getSegments().add(newTail);
             }
         }
     }

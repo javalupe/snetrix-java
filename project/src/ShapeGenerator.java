@@ -1,12 +1,20 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ShapeGenerator {
-    
+    private static final int MIN_SIZE = 3;
+    private static final int MAX_SIZE = MIN_SIZE * 2;
+
+    private int minSize;
+    private int maxSize;
+
     // Singleton -------------------------------------------------------------
     private static ShapeGenerator instance;
 
     private ShapeGenerator() {
+        this.minSize = ShapeGenerator.MIN_SIZE;
+        this.maxSize = ShapeGenerator.MAX_SIZE;
     }
 
     public static ShapeGenerator getInstance() {
@@ -17,7 +25,7 @@ public class ShapeGenerator {
     }
     // -----------------------------------------------------------------------
 
-    public static Shape generate(int size, Color color) {
+    public Shape generate(int size, Color color) {
         ArrayList<Coordinate> blocks = new ArrayList<Coordinate>();
         Coordinate latestBlock = new Coordinate(0, 0);
         blocks.add(latestBlock);
@@ -56,7 +64,12 @@ public class ShapeGenerator {
         return new Shape(blocks, color, width, heigth, minX, minY);
     }
 
-    public static Shape generate(int size) {
+    public Shape generate(int size) {
         return generate(size, RandomColor.generate());
+    }
+
+    public Shape generate(){
+        Random rand = new Random();
+        return generate(rand.nextInt(this.minSize, this.maxSize));
     }
 }

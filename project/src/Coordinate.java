@@ -1,5 +1,4 @@
 import java.awt.Point;
-import java.util.Random;
 
 public class Coordinate extends Point {
 
