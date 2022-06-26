@@ -6,7 +6,7 @@ import interfaces.strategy.Draw;
 import interfaces.strategy.Insert;
 
 public class FoodBank implements Observer, Insert, Draw {
-    private static final int DEFAULT_LENGTH = 10;
+    private static final int DEFAULT_LENGTH = 20;
     private ArrayList<Food> foods;
     private Snake observedSnake;
     private int length;

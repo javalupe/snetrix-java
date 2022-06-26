@@ -1,59 +1,57 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 import java.util.Random;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
-public class Screen extends JPanel implements ActionListener {
-    private static final int DEFAULT_SCREEN_WIDTH = 500 * 2;
-    private static final int DEFAULT_SCREEN_HEIGHT = DEFAULT_SCREEN_WIDTH;
-    private static final int DEFAULT_GRID_SIZE = 50;
-    private static final int DEFAULT_ACTOR_SIZE = DEFAULT_SCREEN_WIDTH / DEFAULT_GRID_SIZE;
-    private static final int DEFAULT_NUMBER_OF_SHAPES = 3;
+public class SnakePanel extends JPanel implements ActionListener {
+    private static final int DEFAULT_WIDTH = 500;
+    private static final int DEFAULT_HEIGHT = DEFAULT_WIDTH;
+    private static final int DEFAULT_GRID_SIZE = 25;
+    private static final int DEFAULT_ACTOR_SIZE = DEFAULT_WIDTH / DEFAULT_GRID_SIZE;
+    private final Color BACKGROUND_COLOR = new Color(40, 45, 55);
 
-    private int screenWidth;
-    private int screenHeight;
+    private int width;
+    private int height;
     private int gridSize;
     private int actorSize;
-    private int numberOfShapes;
 
     private final FoodBank fb = FoodBank.getInstance();
     private Snake snake;
-    private Shape[] shapes;
     private Status status;
 
     // Singleton -------------------------------------------------------------
-    private static Screen instance;
+    private static SnakePanel instance;
 
-    private Screen() {
-        this.screenWidth = Screen.DEFAULT_SCREEN_WIDTH;
-        this.screenHeight = Screen.DEFAULT_SCREEN_HEIGHT;
-        this.gridSize = Screen.DEFAULT_GRID_SIZE;
-        this.actorSize = Screen.DEFAULT_ACTOR_SIZE;
-        this.numberOfShapes = Screen.DEFAULT_NUMBER_OF_SHAPES;
-        this.shapes = new Shape[numberOfShapes];
+    private SnakePanel() {
+        this.width = SnakePanel.DEFAULT_WIDTH;
+        this.height = SnakePanel.DEFAULT_HEIGHT;
+        this.gridSize = SnakePanel.DEFAULT_GRID_SIZE;
+        this.actorSize = SnakePanel.DEFAULT_ACTOR_SIZE;
         this.status = Status.PLAYING;
 
+        this.setBackground(BACKGROUND_COLOR);
+        
         // ATRIBUTOS NÃO INICIALIZADOS:
         // Snake snake
     }
 
-    public static Screen getInstance() {
+    public static SnakePanel getInstance() {
         if (instance == null) {
-            instance = new Screen();
+            instance = new SnakePanel();
         }
         return instance;
     }
     // -----------------------------------------------------------------------
 
-    public int getScreenWidth() {
-        return screenWidth;
+    public int getWidth() {
+        return width;
     }
 
-    public int getScreenHeight() {
-        return screenHeight;
+    public int getHeight() {
+        return height;
     }
 
     public int getGridSize() {
@@ -82,22 +80,6 @@ public class Screen extends JPanel implements ActionListener {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public int getNumberOfShapes() {
-        return numberOfShapes;
-    }
-
-    public void setNumberOfShapes(int numberOfShapes) {
-        this.numberOfShapes = numberOfShapes;
-    }
-
-    public Shape[] getShapes() {
-        return shapes;
-    }
-
-    public void setShapes(Shape[] shapes) {
-        this.shapes = shapes;
     }
 
     public Coordinate getMiddle() {

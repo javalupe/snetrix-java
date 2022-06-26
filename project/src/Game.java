@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import exceptions.SegmentException;
@@ -12,8 +14,6 @@ import interfaces.Observer;
 
 public class Game extends JFrame {
     private static final int DEFAULT_DELAY = 150;
-
-    private final Screen screen = Screen.getInstance();
     private Controller controller;
     private int delay;
 
@@ -27,12 +27,20 @@ public class Game extends JFrame {
         FoodBank.getInstance().setObservedSnake(snake);
         snake.attach(FoodBank.getInstance());
         this.controller.setSnake(snake);
-        initScreen(snake);
+        initSnakePanel(snake);
         initUI();
     }
 
     private void initUI() {
-        this.add(screen);
+        ShapePanel shp = new ShapePanel();
+        this.add(shp, BorderLayout.EAST);
+        shp.setPreferredSize(new Dimension(200, 500));
+
+        ScorePanel scp = new ScorePanel();
+        this.add(scp, BorderLayout.SOUTH);
+        scp.setPreferredSize(new Dimension(700, 40));
+
+        this.add(SnakePanel.getInstance(), BorderLayout.WEST);
         this.setResizable(false);
         this.pack();
 
@@ -42,14 +50,14 @@ public class Game extends JFrame {
 
     }
 
-    private void initScreen(Snake snake) {
-        this.screen.addKeyListener(controller);
-        Timer timer = new Timer(this.delay, this.screen);
+    private void initSnakePanel(Snake snake) {
+        SnakePanel.getInstance().addKeyListener(controller);
+        Timer timer = new Timer(this.delay, SnakePanel.getInstance());
         timer.start();
 
-        this.screen.setFocusable(true);
-        this.screen.setPreferredSize(new Dimension(this.screen.getScreenWidth(), this.screen.getScreenHeight()));
-        this.screen.setSnake(snake);
+        SnakePanel.getInstance().setFocusable(true);
+        SnakePanel.getInstance().setPreferredSize(new Dimension(SnakePanel.getInstance().getWidth(), SnakePanel.getInstance().getHeight()));
+        SnakePanel.getInstance().setSnake(snake);
     }
 
     public static void main(String[] args) {

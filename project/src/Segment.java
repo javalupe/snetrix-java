@@ -15,7 +15,7 @@ public class Segment extends Actor implements Move {
     }
 
     public Segment(Color color, Snake snake) {
-        this(snake.getScreen().getMiddle(), color, snake);
+        this(SnakePanel.getInstance().getMiddle(), color, snake);
         if (!snake.isEmpty()){
             this.setLocation(this.snake.getTail().getLocation());
         }

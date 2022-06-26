@@ -30,8 +30,6 @@ public class ShapeHunter implements Observer, Subject {
     public void hunt() {
         ArrayList<Coordinate> checklist;
         ArrayList<Segment> detectedSegments = new ArrayList<Segment>();
-        boolean found = true;
-
         // para cada Segment da Snake, transladar as coordenadas dos
         // blocos que compoem o Shape tomando como referência a
         // localização do Segment atual 
@@ -47,6 +45,7 @@ public class ShapeHunter implements Observer, Subject {
             // percorrer a lista de Coordinates que devem estar na
             // Snake para que o Shape seja detectado
             detectedSegments.clear();
+            boolean found = true;
             for (Coordinate coord : checklist){
                 found = found && (subjectSnake.in(coord));
                 detectedSegments.add(seg);
