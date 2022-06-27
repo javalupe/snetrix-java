@@ -125,10 +125,12 @@ public class Segment extends Actor implements Move {
     @Override // Remove strategy, da classe parente Actor
     public void remove() {
         // deslocar restante da cobra para preenchê-la
-        try {
-            this.getPrevious().move();
-        } catch (SegmentOutOfBoundsException e) {
-            e.printStackTrace();
+        if (!this.isTail()){
+            try {
+                this.getPrevious().move();
+            } catch (SegmentOutOfBoundsException e) {
+                e.printStackTrace();
+            }
         }
 
         // remover o Segment corrente da Snake que ele referencia
@@ -152,5 +154,10 @@ public class Segment extends Actor implements Move {
         g.fillRect(this.getLocation().x * this.getSize(),
                 this.getLocation().y * this.getSize(),
                 this.getSize(), this.getSize());
+        g.setColor(Color.WHITE);
+        g.drawRect(this.getLocation().x * this.getSize(),
+        this.getLocation().y * this.getSize(),
+        this.getSize(), this.getSize());
+
     }
 }

@@ -13,7 +13,7 @@ import exceptions.SnakeException;
 import interfaces.Observer;
 
 public class Game extends JFrame {
-    private static final int DEFAULT_DELAY = 150;
+    private final int DEFAULT_DELAY = 200;
     private Controller controller;
     private int delay;
 
@@ -29,16 +29,28 @@ public class Game extends JFrame {
         this.controller.setSnake(snake);
         initSnakePanel(snake);
         initUI();
+
+        snake.attach(ShapeHunter.getInstance());
+        ShapeHunter.getInstance().setSubjectSnake(snake);
     }
 
     private void initUI() {
         ShapePanel shp = new ShapePanel();
         this.add(shp, BorderLayout.EAST);
-        shp.setPreferredSize(new Dimension(200, 500));
+        Double shapePanelWidth = SnakePanel.getInstance().getWidth() * 0.4;
+        int shapePanelHeight = SnakePanel.getInstance().getHeight();
+        shp.setPreferredSize(new Dimension(shapePanelWidth.intValue(), shapePanelHeight));
+        ShapeHunter.getInstance().setShape(shp.getShapes()[0]);
 
         ScorePanel scp = new ScorePanel();
+        ShapeHunter.getInstance().attach(scp.getScore());
         this.add(scp, BorderLayout.SOUTH);
-        scp.setPreferredSize(new Dimension(700, 40));
+        Double scorePanelWidth = shapePanelWidth + SnakePanel.getInstance().getWidth() * 0.4;
+        Double scorePanelHeight = SnakePanel.getInstance().getHeight() * 0.1;
+        scp.setPreferredSize(new Dimension(scorePanelWidth.intValue(), scorePanelHeight.intValue()));
+        Timer timer = new Timer(this.delay, scp);
+        timer.start();
+
 
         this.add(SnakePanel.getInstance(), BorderLayout.WEST);
         this.setResizable(false);
@@ -47,6 +59,9 @@ public class Game extends JFrame {
         this.setTitle("Snetrix");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // setup ShapeGenerator to watch ShapeHunter
+        ShapeHunter.getInstance().attach(shp);
 
     }
 

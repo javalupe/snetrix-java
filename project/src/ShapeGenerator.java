@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ShapeGenerator {
-    private static final int MIN_SIZE = 3;
-    private static final int MAX_SIZE = MIN_SIZE * 2;
+    private static final int MIN_SIZE = 2;
+    private static final int MAX_SIZE = 5;
+
 
     private int minSize;
     private int maxSize;
@@ -62,6 +63,14 @@ public class ShapeGenerator {
         int heigth = maxY - minY + 1;
 
         return new Shape(blocks, color, width, heigth, minX, minY);
+    }
+
+    public int getMinSize() {
+        return minSize;
+    }
+
+    public int getMaxSize() {
+        return maxSize;
     }
 
     public Shape generate(int size) {

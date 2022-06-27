@@ -46,10 +46,12 @@ public class SnakePanel extends JPanel implements ActionListener {
     }
     // -----------------------------------------------------------------------
 
+    @Override
     public int getWidth() {
         return width;
     }
 
+    @Override
     public int getHeight() {
         return height;
     }
@@ -106,6 +108,9 @@ public class SnakePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (snake.isEmpty()){
+            status = Status.GAMEOVER;
+        }
         if (status.equals(Status.PLAYING)) {
             snake.move();
         }

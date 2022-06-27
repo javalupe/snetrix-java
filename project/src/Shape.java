@@ -1,7 +1,12 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class Shape {
+import interfaces.strategy.Draw;
+
+public class Shape implements Draw {
+    private static final int DEFAULT_DRAW_SIZE = SnakePanel.getInstance().getActorSize();
+    private static int drawSize = DEFAULT_DRAW_SIZE;
     private ArrayList<Coordinate> blocks;
     private Color color;
     private int width;
@@ -70,6 +75,14 @@ public class Shape {
         return blocks.size();
     }
 
+    public static int getDrawSize() {
+        return drawSize;
+    }
+
+    public static void setDrawSize(int drawSize) {
+        Shape.drawSize = drawSize;
+    }
+
     public ArrayList<Coordinate> getTranslatedBlocks(int x, int y) {
         ArrayList<Coordinate> translatedBlocks = new ArrayList<Coordinate>();
         for (Coordinate coord : this.blocks) {
@@ -83,5 +96,18 @@ public class Shape {
 
     public ArrayList<Coordinate> getTranslatedBlocks() {
         return this.getTranslatedBlocks(this.minX, this.minY);
+    }
+
+    @Override // Draw strategy
+    public void draw(Graphics g) {
+        for (Coordinate coord : this.getTranslatedBlocks()) {
+            g.setColor(this.getColor());
+            g.fillRect(coord.x * Shape.drawSize, coord.y * Shape.drawSize,
+                    Shape.drawSize, Shape.drawSize);
+
+            g.setColor(Color.WHITE);
+            g.drawRect(coord.x * Shape.drawSize, coord.y * Shape.drawSize,
+                    Shape.drawSize, Shape.drawSize);
+        }
     }
 }

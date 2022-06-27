@@ -1,10 +1,12 @@
-import interfaces.strategy.Insert;
-import interfaces.strategy.Move;
-import interfaces.strategy.Draw;
-import interfaces.Observer;
-import interfaces.Subject;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+
+import interfaces.Observer;
+import interfaces.Subject;
+import interfaces.strategy.Draw;
+import interfaces.strategy.Insert;
+import interfaces.strategy.Move;
 
 public class Snake implements Subject, Insert, Move, Draw {
     private ArrayList<Segment> segments;
@@ -53,14 +55,14 @@ public class Snake implements Subject, Insert, Move, Draw {
         return this.segments.get(this.getLength() - 1);
     }
 
-    public boolean in(Coordinate coord) {
-        boolean in = false;
+    public Segment match(Coordinate coord, Color color) {
+        Segment match = null;
         for (Segment seg : this.segments) {
-            if (seg.getLocation().equals(coord)) {
-                in = true;
+            if (seg.getLocation().equals(coord) && seg.getColor() == color) {
+                match = seg;
             }
         }
-        return in;
+        return match;
     }
 
     private void checkBodyCollision() {

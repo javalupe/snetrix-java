@@ -6,7 +6,7 @@ import interfaces.strategy.Draw;
 import interfaces.strategy.Insert;
 
 public class FoodBank implements Observer, Insert, Draw {
-    private static final int DEFAULT_LENGTH = 20;
+    private static final int DEFAULT_LENGTH = 25;
     private ArrayList<Food> foods;
     private Snake observedSnake;
     private int length;
@@ -79,7 +79,6 @@ public class FoodBank implements Observer, Insert, Draw {
             this.foods.add(new Food());
     
             Segment newTail = new Segment(f.getColor(), this.observedSnake);
-            this.observedSnake.getSegments().add(newTail);
             newTail.insert();
         }
     }
