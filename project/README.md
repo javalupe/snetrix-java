@@ -21,7 +21,7 @@ https://github.com/javalupe/mc322/blob/main/project/snetrix.jar
 > https://docs.google.com/presentation/d/1VjUHh6TvXTcX7MuGttllpbNoGelKi59lC5gMIKN51RE/edit#slide=id.p
 
 ## Slides da Apresentação Final
-> https://docs.google.com/presentation/d/135kf0BXVZVBrsugQPYh4Ib1m9Wf34ob28_vCFwLOxIs/edit#slide=id.g1202975768e_0_161
+> https://docs.google.com/presentation/d/1AYmHwLMVmCIzhkl_hy9OlpR2MiHO1PmSlwrjADaJJ_M/edit#slide=id.gf44e01c486_0_56
 
 # Diagramas
 
