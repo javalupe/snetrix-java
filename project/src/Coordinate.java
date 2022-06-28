@@ -2,8 +2,20 @@ import java.awt.Point;
 
 public class Coordinate extends Point {
 
+    public Coordinate(int x, int y){
+        super(x, y);
+    }
+
+    public boolean equals(Coordinate coord){
+        return (this.x == coord.x) && (this.y == coord.y);
+    }
+
     public Coordinate clone(){
         return new Coordinate(this.x, this.y);
+    }
+
+    public Coordinate plus(Coordinate coord){
+        return new Coordinate(this.x + coord.x, this.y + coord.y);
     }
 
     public void towards(Direction dir){
