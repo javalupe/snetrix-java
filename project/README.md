@@ -1,4 +1,4 @@
-# Projeto `<Snetrix>`
+# Projeto `Snetrix`
 
 # Descrição Resumida do Projeto/Jogo
 O jogo Snetrix foi criado a partir da junção de dois jogos classicos, Snake e Tetris. Durante o jogo, o usuário deve, por meio das setas de seu teclado,
