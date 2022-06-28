@@ -13,7 +13,8 @@ JSwing como interface gráfica foi criado o Snetrix, sendo auxiliado por diverso
 
 # Arquivo Executável do Jogo
 
-https://github.com/javalupe/mc322/blob/main/project/snetrix.jar
+[snetrix.jar](snetrix.jar)
+link do arquivo no git: https://github.com/javalupe/mc322/blob/main/project/snetrix.jar
 
 # Slides do Projeto
 
