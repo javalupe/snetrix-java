@@ -8,8 +8,8 @@ da cobra, ou seja, a cabeça seria removida, quando a cobra encosta em si mesma 
 JSwing como interface gráfica foi criado o Snetrix, sendo auxiliado por diversos principios da Programação Orientada a Objetos
 
 # Equipe
-* `<Luiza Coelho de Souza>` - `<247257>`
-* `<Pedro Sader Azevedo>` - `<243245>`
+* `Luiza Coelho de Souza` - `247257`
+* `Pedro Sader Azevedo` - `243245`
 
 # Arquivo Executável do Jogo
 
