@@ -27,4 +27,4 @@ https://github.com/javalupe/mc322/blob/main/project/snetrix.jar
 
 ## Diagrama Geral da Arquitetura do Jogo
 
-> 
+> ![Arquitetura](arquiteturaSnetrix.jpg)
