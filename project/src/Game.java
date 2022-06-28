@@ -13,7 +13,11 @@ import exceptions.SnakeException;
 import interfaces.Observer;
 
 public class Game extends JFrame {
-    private final int DEFAULT_DELAY = 200;
+    private ShapePanel shapePanel;
+    private SnakePanel snakePanel;
+    private ScorePanel scorePanel;
+
+    private static final int DEFAULT_DELAY = 200;
     private Controller controller;
     private int delay;
 
@@ -51,7 +55,6 @@ public class Game extends JFrame {
         Timer timer = new Timer(this.delay, scp);
         timer.start();
 
-
         this.add(SnakePanel.getInstance(), BorderLayout.WEST);
         this.setResizable(false);
         this.pack();
@@ -71,7 +74,8 @@ public class Game extends JFrame {
         timer.start();
 
         SnakePanel.getInstance().setFocusable(true);
-        SnakePanel.getInstance().setPreferredSize(new Dimension(SnakePanel.getInstance().getWidth(), SnakePanel.getInstance().getHeight()));
+        SnakePanel.getInstance().setPreferredSize(
+                new Dimension(SnakePanel.getInstance().getWidth(), SnakePanel.getInstance().getHeight()));
         SnakePanel.getInstance().setSnake(snake);
     }
 

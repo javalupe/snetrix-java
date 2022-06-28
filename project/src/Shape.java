@@ -100,14 +100,21 @@ public class Shape implements Draw {
 
     @Override // Draw strategy
     public void draw(Graphics g) {
+        Color color = this.getColor();
+        for (int i = 0; i < this.blocks.size() - 1; i++){
+            color = color.darker();
+        }
+
         for (Coordinate coord : this.getTranslatedBlocks()) {
-            g.setColor(this.getColor());
+            g.setColor(color);
             g.fillRect(coord.x * Shape.drawSize, coord.y * Shape.drawSize,
                     Shape.drawSize, Shape.drawSize);
 
             g.setColor(Color.WHITE);
             g.drawRect(coord.x * Shape.drawSize, coord.y * Shape.drawSize,
                     Shape.drawSize, Shape.drawSize);
+
+            color = color.brighter();
         }
     }
 }

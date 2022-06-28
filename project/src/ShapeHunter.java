@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 import interfaces.Observer;
 import interfaces.Subject;
@@ -45,64 +47,49 @@ public class ShapeHunter implements Observer, Subject {
         this.shape = shape;
     }
 
-    public ArrayList<Segment> getHuntedSegments(){
+    public ArrayList<Segment> getHuntedSegments() {
         return this.huntedSegments;
     }
 
-    public ArrayList<Segment> seek() {
-        huntedSegments.clear();
+    public void seek() {
         ArrayList<Coordinate> checklist;
-        ArrayList<Segment> detectedSegments = new ArrayList<Segment>();
 
         // para cada Segment da Snake, transladar as coordenadas dos
         // blocos que compoem o Shape tomando como referência a
-        // localização do Segment atual 
-        for (Segment seg : this.subjectSnake.getSegments()){
+        // localização do Segment atual
+        for (Segment seg : this.subjectSnake.getSegments()) {
             Coordinate reference = seg.getLocation();
-            
+
             // a função getTranslatedBlocks, por padrão, subtrai os
             // números que lhe são passados como parâmetro. Nesse
             // caso, queremos somar então multiplicamos os valores
             // desejados por -1
-            checklist = shape.getTranslatedBlocks((-1)*reference.x, (-1)*reference.y);
-            
+            checklist = shape.getTranslatedBlocks((-1) * reference.x, (-1) * reference.y);
+
             // percorrer a lista de Coordinates que devem estar na
             // Snake para que o Shape seja detectado
-            detectedSegments.clear();
-            for (Coordinate coord : checklist){
+            huntedSegments.clear();
+            for (Coordinate coord : checklist) {
                 Segment match = subjectSnake.match(coord, shape.getColor());
-                if (match == null){
-                    break;
+                if (match != null) {
+                    huntedSegments.add(match);
                 }
-                else {
-                    detectedSegments.add(match);
-                }
-            }
-        }
-        if (detectedSegments.size() == shape.getBlocks().size()){
-            this.huntedSegments = (ArrayList<Segment>) detectedSegments.clone();
-            System.out.println(this.huntedSegments);
-            System.out.println("DETECTADO");
-            return detectedSegments;
-        }
-        else{
-            return new ArrayList<Segment>();
-        }
+            }          
+        } 
     }
 
-    public void kill(ArrayList<Segment> detectedSegments){
-        for (Segment seg : detectedSegments){
-            seg.remove();
-            System.out.println(this.huntedSegments);
-        }
-        if (detectedSegments.size() > 0){
+    public void kill() {
+        if (this.huntedSegments.size() == this.shape.getLength()){
+            for (Segment seg : this.huntedSegments) {
+                seg.remove();
+            }
             this.notifyUpdate();
         }
     }
 
     @Override // Subject
     public void attach(Observer obs) {
-        this.removalObservers.add(obs);        
+        this.removalObservers.add(obs);
     }
 
     @Override // Subject
@@ -112,14 +99,15 @@ public class ShapeHunter implements Observer, Subject {
 
     @Override // Subject
     public void notifyUpdate() {
-        for (Observer obs: removalObservers){
+        for (Observer obs : removalObservers) {
             obs.update();
         }
     }
 
     @Override // Observer
     public void update() {
-        this.kill(this.seek());
+        this.seek();
+        this.kill();
     }
 
 }

@@ -23,6 +23,8 @@ public class ShapeContainer extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        this.shape.draw(g);
+        if (SnakePanel.getInstance().getStatus() == Status.PLAYING){
+            this.shape.draw(g);
+        }
     }
 }

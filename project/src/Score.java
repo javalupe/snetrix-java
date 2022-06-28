@@ -1,8 +1,6 @@
-import javax.swing.plaf.multi.MultiPanelUI;
-
 import interfaces.Observer;
 
-public class Score implements Observer {
+public class Score implements Observer{
     private static final int MULTIPLIER = 100;
     private int currentScore;
     private int bestScore;
@@ -42,11 +40,8 @@ public class Score implements Observer {
     @Override
     public void update() {
         this.currentScore += Math.pow(ShapeHunter.getInstance().getHuntedSegments().size(), 2) * MULTIPLIER;
-        System.out.println(currentScore);
-        if (SnakePanel.getInstance().getStatus() == Status.GAMEOVER) {
-            if (this.currentScore > this.bestScore) {
-                this.bestScore = this.currentScore;
-            }
+        if (this.currentScore > this.bestScore) {
+            this.bestScore = this.currentScore;
         }
     }
 

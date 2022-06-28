@@ -60,6 +60,7 @@ public class Snake implements Subject, Insert, Move, Draw {
         for (Segment seg : this.segments) {
             if (seg.getLocation().equals(coord) && seg.getColor() == color) {
                 match = seg;
+                continue;
             }
         }
         return match;
@@ -109,6 +110,7 @@ public class Snake implements Subject, Insert, Move, Draw {
     @Override // Insert strategy
     public void insert() {
         Segment seg = new Segment(this);
+        this.setDirection(Direction.RIGHT);
         seg.insert();
     }
 

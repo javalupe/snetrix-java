@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.Random;
 import java.awt.Graphics;
 
@@ -103,6 +104,19 @@ public class SnakePanel extends JPanel implements ActionListener {
         if (this.status == Status.PLAYING){
             this.snake.draw(g);
             this.fb.draw(g);
+        }
+
+        if (this.status == Status.GAMEOVER){
+            g.setColor(new Color(190, 97, 107));
+            Font font;
+            
+            font = new Font("Monospace", 1, 40);
+            g.setFont(font);
+            g.drawString("Game Over", this.width / 4, this.height / 2);
+
+            font = new Font("Monospace", 1, 20);
+            g.setFont(font);
+            g.drawString("press space to replay", (this.width / 2) - 120, this.height / 2 + 50);
         }
     }
 

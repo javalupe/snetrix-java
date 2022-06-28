@@ -48,6 +48,9 @@ public class ScorePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (SnakePanel.getInstance().getStatus() == Status.GAMEOVER){
+            this.score.setCurrentScore(0);
+        }
         this.left.setText(Score.getCurrentScoreString() + score.getCurrentScore());
         this.right.setText(Score.getBestScoreString() + score.getBestScore());
         this.repaint();
