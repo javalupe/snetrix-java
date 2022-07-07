@@ -19,7 +19,7 @@ auxiliado por diversos principios da Programação Orientada a Objetos
 
 # Arquivo Executável do Jogo
 
-https://github.com/javalupe/mc322/blob/main/project/snetrix.jar
+[snetrix.jar](snetrix.jar)
 
 # Slides do Projeto
 
