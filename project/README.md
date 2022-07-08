@@ -141,7 +141,7 @@ O vídeo a seguir apresenta um detalhamento de um projeto baseado em componentes
 
 > ![Arquitetura Geral](arquiteturaGeral.jpg)
 
-> Faça uma breve descrição do diagrama.
+> Neste diagrama pode-se perceber todos os componentes principais do jogo. A classe principal, Game, é por onde tudo se conecta, e a ela estão ligadas a classe Controller (a qual recebe e controla os input pelo teclado do jogador) e os três principais Jpanels do jogo. Esses JPanels são: ScorePanel (ao qual esta ligado o Score e o coloca em display), SnakePanel (ao qual estão ligados todos os elementos e classes que se relacionam diretamente com a Snake) e ShapePanel (ao qual estão ligados todos os elementos e classes que se relacionam com os Shapes). Também no diagrama estão presentes algumas das principais classes do jogo como ShapeHunter e ShapeContainer, os elementos da herança de Actor (Segment e Food) e elementos adicionais que foram necessários serem adicionados durante a construção do jogo, como um JPanel adicional, o ShapeContainer.
 
 
 ## Componente `<Nome do Componente>`
