@@ -43,7 +43,8 @@ na tela. Ao fazê-lo, a cobra perde a parte do corpo que formou o formato e o
 usuário pontua. O jogo termina em três condições: quando a cobra forma um
 formato que inclui sua cabeça (ou seja, a cobra desaparece), quando a cobra
 colide consigo mesma e quando a cobra encosta em uma das bordas do espaço de
-jogo.
+jogo. Por meio do uso do JSwing como interface gráfica foi criado o Snetrix,
+sendo auxiliado por diversos principios da Programação Orientada a Objetos.
 
 # Equipe
 * Luiza Coelho de Souza - 247257
