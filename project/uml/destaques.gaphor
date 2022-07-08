@@ -50,6 +50,7 @@
 <ref refid="ee4500ae-fe34-11ec-ac88-0fd90d7131b5"/>
 <ref refid="ca64daf5-fe35-11ec-bc75-cfce944ae26b"/>
 <ref refid="f5e449f8-fe35-11ec-acba-cfce944ae26b"/>
+<ref refid="97fb2a27-ff04-11ec-8644-41602209a3b5"/>
 </reflist>
 </ownedType>
 </Package>
@@ -331,7 +332,7 @@
 <val>(1.0, 0.0, 0.0, 1.0, 299.0, 225.0)</val>
 </matrix>
 <points>
-<val>[(-1.0, -33.0), (145.8444643493106, 75.3984375)]</val>
+<val>[(-1.0, -33.0), (145.79267185472628, 75.3984375)]</val>
 </points>
 <head-connection>
 <ref refid="edc51048-fdf7-11ec-b159-9dc4d73fd1dd"/>
@@ -2299,9 +2300,11 @@
 <ref refid="2fb1374f-fe04-11ec-aa6a-9dc4d73fd1dd"/>
 <ref refid="0ad9d678-fe33-11ec-9f37-0fd90d7131b5"/>
 <ref refid="ed3fc188-fe33-11ec-beeb-0fd90d7131b5"/>
+<ref refid="97fc8a41-ff04-11ec-86a9-41602209a3b5"/>
 <ref refid="2dbefe39-fe04-11ec-9eee-9dc4d73fd1dd"/>
 <ref refid="ac604750-fe33-11ec-ad65-0fd90d7131b5"/>
 <ref refid="2b0f1c1a-fe34-11ec-937b-0fd90d7131b5"/>
+<ref refid="e00dae12-ff04-11ec-984c-41602209a3b5"/>
 </reflist>
 </ownedPresentation>
 </Diagram>
@@ -3071,7 +3074,7 @@
 <val>(1.0, 0.0, 0.0, 1.0, 428.5078125, 370.96875)</val>
 </matrix>
 <points>
-<val>[(-387.3394097222217, 48.0), (-279.8913076456311, 48.0)]</val>
+<val>[(-387.3394097222217, 60.818496837424505), (-279.8913076456311, 60.818496837424505)]</val>
 </points>
 <head-connection>
 <ref refid="0ad9d678-fe33-11ec-9f37-0fd90d7131b5"/>
@@ -3083,22 +3086,6 @@
 <val>1</val>
 </auto_dependency>
 </DependencyItem>
-<Dependency id="ad68e61a-fe33-11ec-a105-0fd90d7131b5">
-<client>
-<ref refid="2fb0d9fb-fe04-11ec-9add-9dc4d73fd1dd"/>
-</client>
-<name>
-<val>&lt;&lt;use&gt;&gt;</val>
-</name>
-<presentation>
-<reflist>
-<ref refid="ac604750-fe33-11ec-ad65-0fd90d7131b5"/>
-</reflist>
-</presentation>
-<supplier>
-<ref refid="0ad987d4-fe33-11ec-949d-0fd90d7131b5"/>
-</supplier>
-</Dependency>
 <Class id="ed3f6ec2-fe33-11ec-b90c-0fd90d7131b5">
 <clientDependency>
 <reflist>
@@ -3106,7 +3093,7 @@
 </reflist>
 </clientDependency>
 <name>
-<val>ShapeHunter</val>
+<val>ShapeGenerator</val>
 </name>
 <ownedOperation>
 <reflist>
@@ -3219,22 +3206,6 @@
 <val>1</val>
 </auto_dependency>
 </DependencyItem>
-<Dependency id="3cd43ee2-fe34-11ec-ae55-0fd90d7131b5">
-<client>
-<ref refid="ed3f6ec2-fe33-11ec-b90c-0fd90d7131b5"/>
-</client>
-<name>
-<val>&lt;&lt;use&gt;&gt;</val>
-</name>
-<presentation>
-<reflist>
-<ref refid="2b0f1c1a-fe34-11ec-937b-0fd90d7131b5"/>
-</reflist>
-</presentation>
-<supplier>
-<ref refid="2fb0d9fb-fe04-11ec-9add-9dc4d73fd1dd"/>
-</supplier>
-</Dependency>
 <Diagram id="72135b93-fe34-11ec-8280-0fd90d7131b5">
 <diagramType>
 <val>cmp</val>
@@ -3702,4 +3673,140 @@
 <ref refid="de2aa0b7-fe3b-11ec-a0be-09067b11ab67"/>
 </tail-connection>
 </InterfaceRealizationItem>
+<Class id="97fb2a27-ff04-11ec-8644-41602209a3b5">
+<name>
+<val>RandomColor</val>
+</name>
+<ownedOperation>
+<reflist>
+<ref refid="a49d821b-ff04-11ec-83d2-41602209a3b5"/>
+</reflist>
+</ownedOperation>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="97fc8a41-ff04-11ec-86a9-41602209a3b5"/>
+</reflist>
+</presentation>
+<supplierDependency>
+<reflist>
+<ref refid="e857ae4f-ff04-11ec-9a03-41602209a3b5"/>
+</reflist>
+</supplierDependency>
+</Class>
+<ClassItem id="97fc8a41-ff04-11ec-86a9-41602209a3b5">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 495.4917272218561, 396.87799841871225)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>115.0</val>
+</width>
+<height>
+<val>69.81849683742462</val>
+</height>
+<diagram>
+<ref refid="1775cff5-fe04-11ec-87a6-9dc4d73fd1dd"/>
+</diagram>
+<show_attributes>
+<val>0</val>
+</show_attributes>
+<subject>
+<ref refid="97fb2a27-ff04-11ec-8644-41602209a3b5"/>
+</subject>
+</ClassItem>
+<Operation id="a49d821b-ff04-11ec-83d2-41602209a3b5">
+<class_>
+<ref refid="97fb2a27-ff04-11ec-8644-41602209a3b5"/>
+</class_>
+<isStatic>
+<val>1</val>
+</isStatic>
+<name>
+<val>generate</val>
+</name>
+</Operation>
+<Dependency id="3cd43ee2-fe34-11ec-ae55-0fd90d7131b5">
+<client>
+<ref refid="ed3f6ec2-fe33-11ec-b90c-0fd90d7131b5"/>
+</client>
+<clientDependency>
+<reflist>
+<ref refid="e857ae4f-ff04-11ec-9a03-41602209a3b5"/>
+</reflist>
+</clientDependency>
+<name>
+<val>&lt;&lt;use&gt;&gt;</val>
+</name>
+<presentation>
+<reflist>
+<ref refid="2b0f1c1a-fe34-11ec-937b-0fd90d7131b5"/>
+</reflist>
+</presentation>
+<supplier>
+<ref refid="2fb0d9fb-fe04-11ec-9add-9dc4d73fd1dd"/>
+</supplier>
+</Dependency>
+<Dependency id="ad68e61a-fe33-11ec-a105-0fd90d7131b5">
+<client>
+<ref refid="2fb0d9fb-fe04-11ec-9add-9dc4d73fd1dd"/>
+</client>
+<name>
+<val>&lt;&lt;use&gt;&gt;</val>
+</name>
+<presentation>
+<reflist>
+<ref refid="ac604750-fe33-11ec-ad65-0fd90d7131b5"/>
+</reflist>
+</presentation>
+<supplier>
+<ref refid="0ad987d4-fe33-11ec-949d-0fd90d7131b5"/>
+</supplier>
+</Dependency>
+<DependencyItem id="e00dae12-ff04-11ec-984c-41602209a3b5">
+<diagram>
+<ref refid="1775cff5-fe04-11ec-87a6-9dc4d73fd1dd"/>
+</diagram>
+<horizontal>
+<val>0</val>
+</horizontal>
+<subject>
+<ref refid="e857ae4f-ff04-11ec-9a03-41602209a3b5"/>
+</subject>
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 457.85819875867764, 571.5305892195961)</val>
+</matrix>
+<points>
+<val>[(95.13352846317844, -104.83409396345934), (95.13352846317844, 15.438160780403905), (-156.24169390430876, 15.438160780403905)]</val>
+</points>
+<head-connection>
+<ref refid="97fc8a41-ff04-11ec-86a9-41602209a3b5"/>
+</head-connection>
+<tail-connection>
+<ref refid="2b0f1c1a-fe34-11ec-937b-0fd90d7131b5"/>
+</tail-connection>
+<auto_dependency>
+<val>1</val>
+</auto_dependency>
+</DependencyItem>
+<Dependency id="e857ae4f-ff04-11ec-9a03-41602209a3b5">
+<client>
+<ref refid="3cd43ee2-fe34-11ec-ae55-0fd90d7131b5"/>
+</client>
+<name>
+<val>&lt;&lt;use&gt;&gt;</val>
+</name>
+<presentation>
+<reflist>
+<ref refid="e00dae12-ff04-11ec-984c-41602209a3b5"/>
+</reflist>
+</presentation>
+<supplier>
+<ref refid="97fb2a27-ff04-11ec-8644-41602209a3b5"/>
+</supplier>
+</Dependency>
 </gaphor>
