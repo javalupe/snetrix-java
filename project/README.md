@@ -139,9 +139,29 @@ O vídeo a seguir apresenta um detalhamento de um projeto baseado em componentes
 
 ## Diagrama Geral da Arquitetura do Jogo
 
-> ![Arquitetura](arquiteturaSnetrix2.jpg)
+> ![Arquitetura Geral](diagramasArquitetura/DiagramaGeral.jpg)
 
 > Faça uma breve descrição do diagrama.
+
+## Diagrama Actors 
+
+> ![Arquitetura Geral](diagramasArquitetura/DiagramaActors.jpg)
+
+> Faça uma breve descrição do diagrama.
+
+## Diagrama Shape
+
+> ![Arquitetura Geral](diagramasArquitetura/DiagramaShape.jpg)
+
+> Faça uma breve descrição do diagrama.
+
+## Diagrama UI
+
+> ![Arquitetura Geral](diagramasArquitetura/DiagramaGame.jpg)
+
+> Faça uma breve descrição do diagrama.
+
+
 
 ## Componente `<Nome do Componente>`
 
