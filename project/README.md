@@ -130,6 +130,7 @@ public void notifyUpdate() {
 # Conclusões e Trabalhos Futuros
 
 > Apresente aqui as conclusões do projeto e propostas de trabalho futuro. Esta é a oportunidade em que você pode indicar melhorias no projeto a partir de lições aprendidas e conhecimentos adquiridos durante a realização do projeto, mas que não puderam ser implementadas por questões de tempo. Por exemplo, há design patterns aprendidos no final do curso que provavelmente não puderam ser implementados no jogo -- este é o espaço onde você pode apresentar como aplicaria o pattern no futuro para melhorar o jogo.
+> Acreditamos que nosso projeto Snetrix teve um resultado ótimo e dentro do esperado, mas encontramos diversas dificuldades durante o caminho e tivemos que seguir caminhos diferentes do que pensamos inicialmente. A ideia de construir todos os elementos como listas e matrizes foi rapidamente descartada ao passo que fomos descobrindo como seria o movimento da Snake e como funcionariam os principais métodos que tratavam do Shape. Além disso, o uso do JSwing como interface gráfica foi interessante, por um lado conseguimos aprender o necessário para fazer o jogo rodar e ser construuído com a estética que esperavamos mas por outro lado, é um dos principais pontos a serem melhorados. Com mais estudo e tempo seria possivel criar classes separadas para Model e View (enquanto no jogo atual esses dois aspectos estão juntos, o que deixa espaço para melhorias), deixando o jogo com classes menores e mais organizadas, com o objetivo definido.
 
 # Documentação dos Componentes
 
