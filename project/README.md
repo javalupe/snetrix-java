@@ -73,7 +73,7 @@ jogo. O *framework* gráfico escolhido para o jogo foi o JSwing.
 
 # Diagrama da Arquitetura do Jogo
 
-> ![Arquitetura Geral](arquiteturaGeral.jpg)
+![Arquitetura Geral](arquiteturaGeral.jpg)
 
 Neste diagrama pode-se perceber todos os componentes principais do jogo. A classe principal, `Game`, é por onde tudo se conecta, e a ela estão ligadas a classe `Controller` (a qual recebe e repassa os input pelo teclado do jogador) e os três principais `JPanels` do jogo. Esses `JPanel`s são: `ScorePanel` (ao qual esta ligado o `Score` e o coloca em display), `SnakePanel` (ao qual estão ligados todos os elementos e classes que se relacionam diretamente com a `Snake`) e `ShapePanel` (ao qual estão ligados todos os elementos e classes que se relacionam com os `Shape`s).
 
