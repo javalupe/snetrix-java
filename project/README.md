@@ -25,6 +25,11 @@
         * [Justificativa](#justificativa-2)
 * [Detalhamento das Interfaces](#detalhamento-das-interfaces)
     * [Interface `Draw`](#interface-draw)
+    * [Interface `Insert`](#interface-insert)
+    * [Interface `Remove`](#interface-remove)
+    * [Interface `Move`](#interface-move)
+    * [Interface `Observer`](#interface-observer)
+    * [Interface `Subject`](#interface-subject)
 * [Plano de Exceções](#plano-de-exceções)
     * [Diagrama da hierarquia de exceções](#diagrama-da-hierarquia-de-exceções)
     * [Descrição das classes de exceção](#descrição-das-classes-de-exceção)
@@ -192,14 +197,11 @@ Isso permitiu a criação de listas de tipo `Observer`, que podem ser iteradas p
 
 Essa abordagem genérica tem como vantagem a facilidade de implementar novas respostas às situações observadas. Por exemplo, seria possível adicionar um objeto `ComboDetector` que observa cada movimento da `Snake` para detectar combinações de formatos em seu corpo.
 
-
-
-
 # Detalhamento das Interfaces
 
 ## Interface `Draw`
 
-Interface provida por qualquer objeto que se mova (ex: `Segment`, `Snake`).
+Interface, do *design pattern* de estratégia, provida por qualquer objeto que precisa ser renderizado na tela do jogo.
 
 ```java
 public interface Draw {
@@ -209,7 +211,89 @@ public interface Draw {
 
 Método | Objetivo
 -------| --------
+`draw` | Renderiza o objeto, usando métodos da classe `Graphics` (ex: `fillRect`, `fillOval`).
+
+## Interface `Insert`
+
+Interface, do *design pattern* de estratégia, provida por qualquer objeto que precisa interagir com outros objetos para inicializar todos os seus atributos propriamente. Os casos são:
+
+- `Segment`: é inserido na lista de segmentos da `Snake` a qual ele pertence
+- `Food`: é inserida na lista de comidas do `FoodBank` a qual ela pertence
+- `FoodBank`: preenche a sua lista de comidas, construída vazia por padrão, com `Foods` de cor e posição aleatórias
+- `Snake`: constrói e adiciona à sua lista de segmentos, construída vazia por padrão, um `Segment` para servir de cabeça.
+
+```java
+public interface Insert {
+    public void insert();
+}
+```
+
+Método | Objetivo
+-------| --------
+`insert` | Finaliza a inicialização dos atributos do objeto.
+
+## Interface `Remove`
+
+Interface, do *design pattern* de estratégia, provida por qualquer objeto que precisa interagir com outros objetos para ser retirado do jogo. Os casos são:
+
+- `Segment`: precisa ser removido da lista de segmentos da `Snake`a qual pertence, além de "remendá-la" para manter a continuidade
+- `Food`: precisa ser removida da lista de comidas do `FoodBank`a qual pertence
+
+```java
+public interface Remove {
+    public void remove();
+}
+```
+
+Método | Objetivo
+-------| --------
+`remove` | Realiza interações necessárias para retirada do objeto do jogo.
+
+## Interface `Move`
+
+Interface, do *design pattern* de estratégia, provida por qualquer objeto que precisa se mover.
+
+```java
+public interface Move {
+    public void move();
+}
+```
+
+Método | Objetivo
+-------| --------
 `move` | Move o objeto. Note que esse método não contém parâmetros, então a especificações do movimento (ex: direção, velocidade) precisam ser "decididas" pelo próprio objeto.
+
+## Interface `Observer`
+
+Interface, do *design pattern* de observador, provida por qualquer objeto que desempenha o papel de observador.
+
+```java
+public interface Observer {
+    public void update();
+}
+```
+
+Método | Objetivo
+-------| --------
+`update` | Atualiza o estado do objeto observador.
+
+## Interface `Subject`
+
+Interface, do *design pattern* de observador, provida por qualquer objeto que desempenha o papel de observado.
+
+```java
+public interface Subject {
+    public void attach(Observer obs);
+    public void dettach(Observer obs);
+    public void notifyUpdate();
+}
+```
+
+Método | Objetivo
+-------| --------
+`attach` | adiciona um objeto ao registro de observadores a serem notificados.
+`dettach` | remove um objeto do registro de observadores a serem notificados.
+`notifyUpdate` | notifica os observadores registrados.
 
 # Plano de Exceções
 
