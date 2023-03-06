@@ -1,6 +1,6 @@
 # SNETRIX
 
-<img width=400 align="right" src="project/assets/gameplay.gif">
+<img width=350 align="right" src="project/assets/gameplay.gif">
 
 A snake and tetris crossover!
 
