@@ -1,4 +1,4 @@
-# SNETRIX
+<h1><img align="center" height="80" src="./assets/logo.png"> SNETRIX</h1>
 
 A snake and tetris crossover!
 
